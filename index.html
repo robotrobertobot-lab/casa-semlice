@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Semplice - Gestione Condominiale</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casa Semplice</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
-body{background:#f5f5f7;color:#1a1a1a;}
-.login-screen{position:fixed;inset:0;background:#f5f5f7;display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;}
+body{background:#f4f5f7;color:#111;}
+.login-screen{position:fixed;inset:0;background:#f4f5f7;display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;}
 .login-screen.hidden{display:none;}
-.login-box{background:white;border-radius:20px;padding:32px;width:100%;max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
-.login-box h1{font-size:22px;text-align:center;margin-bottom:6px;}
-.login-box p{font-size:13px;color:#888;text-align:center;margin-bottom:24px;}
-.login-box input{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;margin-bottom:12px;font-size:15px;}
-.btn-black{background:#1a1a1a;color:white;border:none;width:100%;padding:14px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;margin-top:8px;}
-.btn-outline{border:1px solid #ddd;background:white;width:100%;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;margin-top:8px;}
-header{background:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:10;}
-main{padding:16px;max-width:500px;margin:0 auto 80px auto;}
-.card{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
-.section{display:none;} .section.active{display:block;}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e5e5e5;display:flex;justify-content:space-around;padding:8px 0 12px 0;z-index:20;}
-.nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 16px;border-radius:10px;cursor:pointer;color:#888;font-size:11px;border:none;background:none;}
-.nav-item.active{color:#1a1a1a;font-weight:600;}
-.nav-item svg{width:22px;height:22px;}
-.item{padding:14px;border:1px solid #eee;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
-.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
-.badge-open{background:#ffe4e4;color:#c00;} .badge-closed{background:#e6f4ea;color:#1a7a1a;}
-.admin-only{display:none !important;} body.is-admin .admin-only{display:flex !important;} body.is-admin .admin-only-block{display:block !important;}
+.login-box{background:white;border-radius:24px;padding:32px;width:100%;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.08);}
+.login-box h1{text-align:center;font-size:24px;}.login-box p.sub{text-align:center;color:#888;font-size:13px;margin:8px 0 20px;}
+.login-box input{width:100%;padding:14px;border:1px solid #e5e5e5;border-radius:12px;margin-bottom:10px;font-size:15px;background:#fafafa;}
+.btn-black{background:#111;color:white;border:none;width:100%;padding:14px;border-radius:12px;font-weight:600;cursor:pointer;}
+.btn-light{background:white;border:1px solid #ddd;width:100%;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;margin-top:8px;}
+header{background:white;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10;}
+main{padding:14px;max-width:480px;margin:0 auto 90px auto;}
+.card{background:white;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,0.04);}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat{background:#f8f8fa;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0f0f0;}
+.quick{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.quick button{flex:1 1 48%;background:#f8f8fa;border:1px solid #eee;border-radius:12px;padding:14px;font-weight:600;cursor:pointer;}
+.section{display:none;}.section.active{display:block;}
+.item{border:1px solid #eee;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;background:white;}
+.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.badge-open{background:#ffe5e5;color:#c00;}.badge-pay{background:#e6f4ea;color:#0a7a2a;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 12px;z-index:20;}
+.nav-item{border:none;background:none;color:#999;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px 14px;border-radius:10px;}
+.nav-item.active{color:#111;background:#f4f5f7;}
+.admin-only{display:none!important;} body.is-admin.admin-only{display:inline-flex!important;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
+.modal.open{display:flex;}.modal-box{background:white;border-radius:18px;padding:20px;width:100%;max-width:380px;}
+.modal-box input,.modal-box textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px;}
 </style>
 </head>
 <body>
@@ -34,121 +38,100 @@ main{padding:16px;max-width:500px;margin:0 auto 80px auto;}
 <div id="loginScreen" class="login-screen">
 <div class="login-box">
 <h1>Casa Semplice</h1>
-<p>Accedi con Nome e Cognome</p>
-<input type="text" id="nomeInput" placeholder="Nome">
-<input type="text" id="cognomeInput" placeholder="Cognome">
-<input type="password" id="passwordInput" placeholder="Password personale">
+<p class="sub">Accesso con Nome e Cognome</p>
+<input id="nomeInput" placeholder="Nome">
+<input id="cognomeInput" placeholder="Cognome">
+<input id="passwordInput" type="password" placeholder="Password personale">
 <button class="btn-black" onclick="login()">Accedi</button>
-<button class="btn-outline" onclick="registra()">Crea nuovo account</button>
-<p id="loginErr" style="color:red;font-size:12px;margin-top:10px;display:none;"></p>
-<p style="font-size:10px;color:#bbb;margin-top:16px;text-align:center;">Amministratore: Amministratore Condominio / amministratore2024</p>
+<button class="btn-light" onclick="registra()">Crea nuovo account</button>
+<p id="loginErr" style="color:#c00;font-size:12px;margin-top:10px;display:none;"></p>
+<p style="font-size:10px;color:#aaa;text-align:center;margin-top:14px;">Admin prova: Amministratore Condominio / amministratore2024</p>
 </div>
 </div>
 
 <header>
-<div><b id="userDisplay">Casa Semplice</b><br><span id="roleDisplay" style="font-size:11px;color:#888;"></span></div>
-<button style="padding:6px 12px;border:1px solid #ddd;border-radius:8px;background:white;font-size:12px;" onclick="logout()">Esci</button>
+<div><b id="userDisplay">Casa Semplice</b><div id="roleDisplay" style="font-size:11px;color:#888;"></div></div>
+<button onclick="logout()" style="border:1px solid #ddd;background:white;padding:6px 12px;border-radius:8px;font-size:12px;">Esci</button>
 </header>
 
 <main>
 <div id="home" class="section active">
 <div class="card">
 <h2 id="welcomeText">Benvenuto</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
-<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b style="font-size:24px;">5</b><br><span style="font-size:12px;color:#666;">Condomini</span></div>
-<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b style="font-size:24px;">2</b><br><span style="font-size:12px;color:#666;">Guasti</span></div>
+<p style="font-size:13px;color:#666;margin-top:4px;">Via Roma 12 - Gestione condominiale</p>
+<div class="grid2" style="margin-top:16px;">
+<div class="stat"><b style="font-size:22px;">5</b><br><span style="font-size:12px;color:#666;">Condomini</span></div>
+<div class="stat"><b style="font-size:22px;" id="statGuasti">2</b><br><span style="font-size:12px;color:#666;">Guasti aperti</span></div>
+<div class="stat"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo cassa</span></div>
+<div class="stat"><b>3</b><br><span style="font-size:12px;color:#666;">Documenti</span></div>
 </div>
-<button class="btn-black" onclick="showTab('guasti')">Segnala Guasto</button>
+<div class="quick">
+<button onclick="showTab('guasti')">Segnala Guasto</button>
+<button onclick="showTab('cassa')">Cassa</button>
+<button onclick="showTab('vota')">Votazioni</button>
+<button onclick="alert('Documenti: regolamento.pdf, bilancio.pdf')">Documenti</button>
 </div>
+</div>
+<div class="card"><h3>Avvisi</h3><div class="item"><span>Manutenzione ascensore Lunedì</span><span class="badge badge-open">Nuovo</span></div></div>
 </div>
 
 <div id="guasti" class="section">
-<div class="card"><h2>Guasti</h2>
-<div class="item"><div><b>Ascensore bloccato</b><br><span style="font-size:12px;color:#666;">Scala A</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;">Chiudi</button></div></div>
-<div class="item"><div><b>Perdita acqua garage</b><br><span style="font-size:12px;color:#666;">Garage</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;">Chiudi</button></div></div>
+<div class="card">
+<h2>Guasti</h2>
+<div id="listaGuasti" style="margin-top:12px;"></div>
+<button class="btn-black admin-only" onclick="openModal('guastoModal')" style="margin-top:12px;">+ Aggiungi guasto (Admin)</button>
+<button class="btn-black" onclick="openModal('guastoModal')" style="margin-top:12px;">+ Segnala Guasto</button>
 </div>
 </div>
 
 <div id="cassa" class="section">
 <div class="card">
 <h2>Cassa Condominiale</h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
-<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo</span></div>
-<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b>€ 320</b><br><span style="font-size:12px;color:#666;">Da riscuotere</span></div>
+<div class="grid2" style="margin:14px 0;">
+<div class="stat"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo</span></div>
+<div class="stat"><b>€ 320</b><br><span style="font-size:12px;color:#666;">Da riscuotere</span></div>
 </div>
-<div style="border:1px solid #e5e5e5;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-<div><div style="font-weight:600;font-size:14px;">Paga Online</div><div style="font-size:11px;color:#888;margin-top:2px;">Opzione aggiuntiva • Carta, Apple Pay</div></div>
-<button onclick="pagaOnline()" style="background:#1a1a1a;color:white;border:none;padding:9px 14px;border-radius:9px;font-weight:600;font-size:13px;cursor:pointer;">Paga</button>
+<div style="border:1px solid #111;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+<div><b>Paga Online</b><br><span style="font-size:11px;color:#666;">Opzione aggiuntiva • Carta, Apple Pay</span></div>
+<button onclick="pagaOnline()" style="background:#111;color:white;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;">Paga</button>
 </div>
 <div id="listaPagamenti"></div>
 </div>
 </div>
 
-<div id="vota" class="section"><div class="card"><h2>Votazioni</h2><div class="item"><div><b>Installare videosorveglianza?</b></div><button class="btn-black" style="width:auto;padding:8px 16px;">Vota</button></div></div></div>
+<div id="vota" class="section">
+<div class="card"><h2>Votazioni</h2><div id="listaVoti" style="margin-top:12px;"></div></div>
+</div>
 </main>
 
 <nav class="bottom-nav">
-<button class="nav-item active" onclick="showTab('home')" id="nav-home"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>Home</button>
-<button class="nav-item" onclick="showTab('guasti')" id="nav-guasti"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>Guasti</button>
-<button class="nav-item" onclick="showTab('cassa')" id="nav-cassa"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/></svg>Cassa</button>
-<button class="nav-item" onclick="showTab('vota')" id="nav-vota"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Vota</button>
+<button class="nav-item active" id="nav-home" onclick="showTab('home')">Home</button>
+<button class="nav-item" id="nav-guasti" onclick="showTab('guasti')">Guasti</button>
+<button class="nav-item" id="nav-cassa" onclick="showTab('cassa')">Cassa</button>
+<button class="nav-item" id="nav-vota" onclick="showTab('vota')">Vota</button>
 </nav>
 
-<script>
-let currentUser = JSON.parse(localStorage.getItem('cs_current') || 'null');
-let users = JSON.parse(localStorage.getItem('cs_users') || '[]');
-const ADMIN_COGNOME = "Condominio";
-const ADMIN_NOME = "Amministratore";
-const ADMIN_PWD = "amministratore2024";
-const STRIPE_LINK = "https://buy.stripe.com/test_...";
+<div id="guastoModal" class="modal"><div class="modal-box"><h3>Segnala Guasto</h3><input id="gTitolo" placeholder="Titolo es. Ascensore"><input id="gLuogo" placeholder="Luogo es. Scala A"><textarea id="gDesc" placeholder="Descrizione"></textarea><button class="btn-black" onclick="addGuasto()" style="margin-top:10px;">Invia</button><button class="btn-light" onclick="closeModal('guastoModal')">Annulla</button></div></div>
 
-function saveUsers(){ localStorage.setItem('cs_users', JSON.stringify(users)); }
-function showTab(name){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active')); document.getElementById(name).classList.add('active'); document.getElementById('nav-'+name).classList.add('active'); }
-function login(){
-const nome=document.getElementById('nomeInput').value.trim();
-const cognome=document.getElementById('cognomeInput').value.trim();
-const pwd=document.getElementById('passwordInput').value.trim();
-const err=document.getElementById('loginErr');
-if(!nome||!cognome||!pwd){ err.textContent="Compila Nome, Cognome e Password"; err.style.display='block'; return; }
-if(nome.toLowerCase()===ADMIN_NOME.toLowerCase() && cognome.toLowerCase()===ADMIN_COGNOME.toLowerCase()){
-if(pwd===ADMIN_PWD){ currentUser={nome,cognome,ruolo:'amministratore'}; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp(); } else { err.textContent="Password Amministratore errata!"; err.style.display='block'; } return;
-}
-const found=users.find(u=>u.nome.toLowerCase()===nome.toLowerCase() && u.cognome.toLowerCase()===cognome.toLowerCase() && u.password===pwd);
-if(found){ currentUser=found; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp(); } else { err.textContent="Account non trovato. Se è la prima volta clicca Crea nuovo account"; err.style.display='block'; }
-}
-function registra(){
-const nome=document.getElementById('nomeInput').value.trim();
-const cognome=document.getElementById('cognomeInput').value.trim();
-const pwd=document.getElementById('passwordInput').value.trim();
-const err=document.getElementById('loginErr');
-if(!nome||!cognome||!pwd){ err.textContent="Compila Nome, Cognome e scegli Password"; err.style.display='block'; return; }
-if(pwd.length<4){ err.textContent="Password minimo 4 caratteri"; err.style.display='block'; return; }
-if(users.find(u=>u.nome.toLowerCase()===nome.toLowerCase() && u.cognome.toLowerCase()===cognome.toLowerCase())){ err.textContent="Account già esistente, fai Accedi"; err.style.display='block'; return; }
-const newUser={nome,cognome,password:pwd,ruolo:'condomino'}; users.push(newUser); saveUsers(); currentUser=newUser; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp();
-}
-function logout(){ localStorage.removeItem('cs_current'); location.reload(); }
-function pagaOnline(){
-if(STRIPE_LINK.includes("test_")){
-alert("Paga Online è attivo come opzione aggiuntiva.\n\nPer i pagamenti veri:\n1. Vai su stripe.com\n2. Crea Payment Link\n3. Sostituisci STRIPE_LINK nel codice");
-return;
-}
-window.open(STRIPE_LINK,"_blank");
-}
-function initApp(){
-if(!currentUser){ document.getElementById('loginScreen').classList.remove('hidden'); return; }
-document.getElementById('loginScreen').classList.add('hidden');
-document.getElementById('userDisplay').textContent=currentUser.nome+" "+currentUser.cognome;
-const isAdmin=currentUser.ruolo==='amministratore';
-document.body.classList.toggle('is-admin',isAdmin);
-document.getElementById('roleDisplay').textContent=isAdmin ? "Amministratore" : "Condomino";
-document.getElementById('welcomeText').textContent="Benvenuto "+currentUser.nome;
-const lista=document.getElementById('listaPagamenti');
-if(isAdmin){
-lista.innerHTML=`<div class="item"><span>Rossi Mario - Ottobre</span><div><b>Non pagato</b><button class="admin-only btn-black" style="width:auto;padding:6px 12px;font-size:12px;margin-left:8px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></div></div><div class="item"><span>Bianchi Luca - Ottobre</span><div><b style="color:green;">Pagato</b></div></div>`;
-} else {
-lista.innerHTML=`<div class="item"><span>Quota Ottobre - ${currentUser.cognome} ${currentUser.nome}</span><div><b>Non pagato</b></div></div>`;
-}
-}
+<script>
+let currentUser=JSON.parse(localStorage.getItem('cs_current')||'null');
+let users=JSON.parse(localStorage.getItem('cs_users')||'[]');
+let guasti=JSON.parse(localStorage.getItem('cs_guasti')||'[{"titolo":"Ascensore bloccato","luogo":"Scala A","stato":"Aperto"},{"titolo":"Perdita acqua garage","luogo":"Garage","stato":"Aperto"}]');
+let voti=JSON.parse(localStorage.getItem('cs_voti')||'[{"q":"Installare videosorveglianza?","si":2,"no":1}]');
+const STRIPE_LINK="https://buy.stripe.com/test_...";
+function save(){localStorage.setItem('cs_users',JSON.stringify(users));localStorage.setItem('cs_guasti',JSON.stringify(guasti));localStorage.setItem('cs_voti',JSON.stringify(voti));}
+function showTab(n){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));document.getElementById(n).classList.add('active');document.getElementById('nav-'+n).classList.add('active');}
+function login(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila tutto";er.style.display='block';return;}if(no.toLowerCase()=="amministratore"&&co.toLowerCase()=="condominio"&&pw=="amministratore2024"){currentUser={nome:no,cognome:co,ruolo:"amministratore"};localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();return;}const f=users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase()&&u.password==pw);if(f){currentUser=f;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}else{er.textContent="Account non trovato, fai Crea nuovo account";er.style.display='block';}}
+function registra(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila Nome, Cognome, Password";er.style.display='block';return;}if(users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase())){er.textContent="Esiste già, fai Accedi";er.style.display='block';return;}const nu={nome:no,cognome:co,password:pw,ruolo:"condomino"};users.push(nu);save();currentUser=nu;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}
+function logout(){localStorage.removeItem('cs_current');location.reload();}
+function openModal(id){document.getElementById(id).classList.add('open');}function closeModal(id){document.getElementById(id).classList.remove('open');}
+function addGuasto(){const t=document.getElementById('gTitolo').value;const l=document.getElementById('gLuogo').value;if(!t)return;guasti.unshift({titolo:t,luogo:l||"Generale",stato:"Aperto"});save();renderGuasti();closeModal('guastoModal');document.getElementById('gTitolo').value="";document.getElementById('gLuogo').value="";}
+function renderGuasti(){const c=document.getElementById('listaGuasti');c.innerHTML=guasti.map((g,i)=>`<div class="item"><div><b>${g.titolo}</b><br><span style="font-size:12px;color:#666;">${g.luogo}</span></div><div style="text-align:right;"><span class="badge ${g.stato=='Aperto'?'badge-open':'badge-pay'}">${g.stato}</span><br><button class="admin-only btn-light" style="padding:4px 8px;font-size:11px;margin-top:6px;" onclick="chiudiGuasto(${i})">Chiudi</button></div></div>`).join('');document.getElementById('statGuasti').textContent=guasti.filter(g=>g.stato=='Aperto').length;}
+function chiudiGuasto(i){guasti[i].stato=guasti[i].stato=='Aperto'?'Chiuso':'Aperto';save();renderGuasti();}
+function renderVoti(){const c=document.getElementById('listaVoti');c.innerHTML=voti.map((v,i)=>`<div class="item"><div><b>${v.q}</b><br><span style="font-size:12px;color:#666;">Sì: ${v.si} No: ${v.no}</span></div><div><button class="btn-black" style="width:auto;padding:8px 14px;" onclick="vota(${i},'si')">Sì</button> <button class="btn-light" style="width:auto;padding:8px 14px;display:inline;" onclick="vota(${i},'no')">No</button></div></div>`).join('');}
+function vota(i,t){if(t=='si')voti[i].si++;else voti[i].no++;save();renderVoti();alert('Voto registrato!');}
+function pagaOnline(){if(STRIPE_LINK.includes('test_')){alert('Paga Online è attivo come opzione aggiuntiva. Per attivare pagamenti veri, crea un Payment Link su stripe.com e sostituisci STRIPE_LINK nel codice.');return;}window.open(STRIPE_LINK,'_blank');}
+function initApp(){if(!currentUser){document.getElementById('loginScreen').classList.remove('hidden');return;}document.getElementById('loginScreen').classList.add('hidden');document.getElementById('userDisplay').textContent=currentUser.nome+" "+currentUser.cognome;document.getElementById('roleDisplay').textContent=currentUser.ruolo=='amministratore'?'Amministratore':'Condomino';document.getElementById('welcomeText').textContent='Benvenuto '+currentUser.nome;document.body.classList.toggle('is-admin',currentUser.ruolo=='amministratore');renderGuasti();renderVoti();const lp=document.getElementById('listaPagamenti');if(currentUser.ruolo=='amministratore'){lp.innerHTML=`<div class="item"><span>Rossi Mario - Ottobre</span><span><b>Non pagato</b> <button class="btn-black" style="width:auto;padding:6px 10px;font-size:12px;margin-left:6px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></span></div><div class="item"><span>Bianchi Luca</span><span style="color:green;font-weight:700;">Pagato</span></div>`;}else{lp.innerHTML=`<div class="item"><span>Quota Ottobre - ${currentUser.cognome} ${currentUser.nome}</span><span>Non pagato</span></div>`;}}
 initApp();
 </script>
 </body>
