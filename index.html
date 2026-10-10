@@ -3,88 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Semplice</title>
+<title>Casa Semplice - Gestione Condominiale</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
-body{background:#f5f5f7;color:#1a1a1a;padding-bottom:80px;}
-header{background:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:10;}
-header h1{font-size:18px;font-weight:700;}
-header button{padding:7px 12px;border:1px solid #1a1a1a;border-radius:8px;background:white;font-weight:600;cursor:pointer;}
-header button.admin{background:#1a1a1a;color:white;}
-main{padding:16px;max-width:500px;margin:0 auto;}
-.card{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
-.card h2{font-size:20px;margin-bottom:16px;}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;}
-.stat{background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;}
-.stat b{font-size:24px;display:block;}
-.stat span{font-size:12px;color:#666;}
+body{background:#f5f5f7;color:#1a1a1a;}
+.login-screen{position:fixed;inset:0;background:#f5f5f7;display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;}
+.login-screen.hidden{display:none;}
+.login-box{background:white;border-radius:20px;padding:32px;width:100%;max-width:380px;box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.login-box h1{font-size:22px;text-align:center;margin-bottom:6px;}
+.login-box p{font-size:13px;color:#888;text-align:center;margin-bottom:24px;}
+.login-box input{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:10px;margin-bottom:12px;font-size:15px;}
 .btn-black{background:#1a1a1a;color:white;border:none;width:100%;padding:14px;border-radius:12px;font-weight:600;font-size:15px;cursor:pointer;margin-top:8px;}
-.btn-outline{border:1px solid #ddd;background:white;width:100%;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;}
-.section{display:none;}
-.section.active{display:block;}
+.btn-outline{border:1px solid #ddd;background:white;width:100%;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;margin-top:8px;}
+header{background:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #e5e5e5;position:sticky;top:0;z-index:10;}
+main{padding:16px;max-width:500px;margin:0 auto 80px auto;}
+.card{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,0.05);}
+.section{display:none;} .section.active{display:block;}
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #e5e5e5;display:flex;justify-content:space-around;padding:8px 0 12px 0;z-index:20;}
 .nav-item{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 16px;border-radius:10px;cursor:pointer;color:#888;font-size:11px;border:none;background:none;}
 .nav-item.active{color:#1a1a1a;font-weight:600;}
 .nav-item svg{width:22px;height:22px;}
 .item{padding:14px;border:1px solid #eee;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
 .badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;}
-.badge-open{background:#ffe4e4;color:#c00;}
-.badge-closed{background:#e6f4ea;color:#1a7a1a;}
-.admin-only{display:none;}
-body.is-admin .admin-only{display:flex !important;}
-body.is-admin .admin-only-block{display:block !important;}
-#adminModal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;}
-#adminModal.show{display:flex;}
-.modal-box{background:white;border-radius:16px;padding:24px;width:100%;max-width:340px;}
-.modal-box input{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:12px 0;}
+.badge-open{background:#ffe4e4;color:#c00;} .badge-closed{background:#e6f4ea;color:#1a7a1a;}
+.admin-only{display:none !important;} body.is-admin .admin-only{display:flex !important;} body.is-admin .admin-only-block{display:block !important;}
 </style>
 </head>
 <body>
-<header>
+
+<div id="loginScreen" class="login-screen">
+<div class="login-box">
 <h1>Casa Semplice</h1>
-<button id="adminBtn" onclick="toggleAdmin()">Accedi Admin</button>
+<p>Accedi con Nome e Cognome</p>
+<input type="text" id="nomeInput" placeholder="Nome">
+<input type="text" id="cognomeInput" placeholder="Cognome">
+<input type="password" id="passwordInput" placeholder="Password personale">
+<button class="btn-black" onclick="login()">Accedi</button>
+<button class="btn-outline" onclick="registra()">Crea nuovo account</button>
+<p id="loginErr" style="color:red;font-size:12px;margin-top:10px;display:none;"></p>
+<p style="font-size:10px;color:#bbb;margin-top:16px;text-align:center;">Amministratore: Amministratore Condominio / amministratore2024</p>
+</div>
+</div>
+
+<header>
+<div><b id="userDisplay">Casa Semplice</b><br><span id="roleDisplay" style="font-size:11px;color:#888;"></span></div>
+<button style="padding:6px 12px;border:1px solid #ddd;border-radius:8px;background:white;font-size:12px;" onclick="logout()">Esci</button>
 </header>
 
 <main>
 <div id="home" class="section active">
 <div class="card">
-<h2>Benvenuto condomino</h2>
-<div class="stats">
-<div class="stat"><b>5</b><span>Tot Condomini</span></div>
-<div class="stat"><b>2</b><span>Guasti Aperti</span></div>
+<h2 id="welcomeText">Benvenuto</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
+<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b style="font-size:24px;">5</b><br><span style="font-size:12px;color:#666;">Condomini</span></div>
+<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b style="font-size:24px;">2</b><br><span style="font-size:12px;color:#666;">Guasti</span></div>
 </div>
-<p id="roleLabel" style="text-align:center;font-size:12px;color:#888;margin:12px 0;">Modalità: Condomino (solo lettura)</p>
-<button class="btn-black" onclick="showTab('guasti')">+ Segnala Guasto</button>
+<button class="btn-black" onclick="showTab('guasti')">Segnala Guasto</button>
 </div>
 </div>
 
 <div id="guasti" class="section">
-<div class="card">
-<h2>Guasti</h2>
-<div class="item"><div><b>Ascensore bloccato</b><br><span style="font-size:12px;color:#666;">Scala A</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;" onclick="alert('Segnato come CHIUSO!')">Chiudi</button></div></div>
-<div class="item"><div><b>Perdita acqua garage</b><br><span style="font-size:12px;color:#666;">Garage</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;" onclick="alert('Segnato come CHIUSO!')">Chiudi</button></div></div>
-<div class="admin-only-block admin-only card" style="background:#f9f9fb;border:1px dashed #ccc;"><b style="font-size:14px;">Solo Admin:</b><p style="font-size:13px;color:#666;margin-top:4px;">Qui puoi chiudere i guasti e modificare lo stato.</p></div>
+<div class="card"><h2>Guasti</h2>
+<div class="item"><div><b>Ascensore bloccato</b><br><span style="font-size:12px;color:#666;">Scala A</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;">Chiudi</button></div></div>
+<div class="item"><div><b>Perdita acqua garage</b><br><span style="font-size:12px;color:#666;">Garage</span></div><div><span class="badge badge-open">Aperto</span><button class="admin-only btn-outline" style="margin-top:6px;padding:4px 8px;font-size:11px;">Chiudi</button></div></div>
 </div>
 </div>
 
 <div id="cassa" class="section">
 <div class="card">
 <h2>Cassa Condominiale</h2>
-<div class="stats">
-<div class="stat"><b>€ 2.450</b><span>Saldo</span></div>
-<div class="stat"><b>€ 320</b><span>Da riscuotere</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;">
+<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo</span></div>
+<div style="background:#f9f9fb;border-radius:12px;padding:16px;text-align:center;border:1px solid #f0f0f0;"><b>€ 320</b><br><span style="font-size:12px;color:#666;">Da riscuotere</span></div>
 </div>
-<div class="item"><span>Rossi - Quota Ottobre</span><div><b>Non pagato</b><button class="admin-only btn-black" style="width:auto;padding:6px 12px;font-size:12px;margin-left:8px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></div></div>
-<div class="item"><span>Bianchi - Quota Ottobre</span><div><b style="color:green;">Pagato</b></div></div>
-<div class="item"><span>Verdi - Quota Ottobre</span><div><b>Non pagato</b><button class="admin-only btn-black" style="width:auto;padding:6px 12px;font-size:12px;margin-left:8px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></div></div>
-<div class="admin-only admin-only-block" style="margin-top:16px;"><button class="btn-black">+ Aggiungi Spesa</button></div>
-<div style="margin-top:12px;font-size:12px;color:#888;text-align:center;" class="admin-only-block admin-only">Modalità Admin attiva: puoi modificare i pagamenti</div>
+<div style="border:1px solid #e5e5e5;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+<div><div style="font-weight:600;font-size:14px;">Paga Online</div><div style="font-size:11px;color:#888;margin-top:2px;">Opzione aggiuntiva • Carta, Apple Pay</div></div>
+<button onclick="pagaOnline()" style="background:#1a1a1a;color:white;border:none;padding:9px 14px;border-radius:9px;font-weight:600;font-size:13px;cursor:pointer;">Paga</button>
+</div>
+<div id="listaPagamenti"></div>
 </div>
 </div>
 
-<div id="vota" class="section">
-<div class="card"><h2>Votazioni</h2><div class="item"><div><b>Videosorveglianza?</b></div><button class="btn-black" style="width:auto;padding:8px 16px;">Vota</button></div></div>
-</div>
+<div id="vota" class="section"><div class="card"><h2>Votazioni</h2><div class="item"><div><b>Installare videosorveglianza?</b></div><button class="btn-black" style="width:auto;padding:8px 16px;">Vota</button></div></div></div>
 </main>
 
 <nav class="bottom-nav">
@@ -94,45 +94,62 @@ body.is-admin .admin-only-block{display:block !important;}
 <button class="nav-item" onclick="showTab('vota')" id="nav-vota"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Vota</button>
 </nav>
 
-<div id="adminModal">
-<div class="modal-box">
-<h3>Accesso Admin</h3>
-<p style="font-size:13px;color:#666;margin-top:4px;">Inserisci password admin</p>
-<input type="password" id="pwdInput" placeholder="Password">
-<button class="btn-black" onclick="checkPwd()">Entra</button>
-<button class="btn-outline" style="margin-top:8px;" onclick="closeModal()">Annulla</button>
-<p id="pwdErr" style="color:red;font-size:12px;margin-top:8px;display:none;">Password errata!</p>
-</div>
-</div>
-
 <script>
-const ADMIN_PWD = "admin123"; // <--- CAMBIA QUI LA PASSWORD SE VUOI
-let isAdmin = localStorage.getItem('isAdmin') === 'true';
+let currentUser = JSON.parse(localStorage.getItem('cs_current') || 'null');
+let users = JSON.parse(localStorage.getItem('cs_users') || '[]');
+const ADMIN_COGNOME = "Condominio";
+const ADMIN_NOME = "Amministratore";
+const ADMIN_PWD = "amministratore2024";
+const STRIPE_LINK = "https://buy.stripe.com/test_...";
 
-function updateUI(){
-document.body.classList.toggle('is-admin', isAdmin);
-document.getElementById('adminBtn').textContent = isAdmin ? 'Esci Admin' : 'Accedi Admin';
-document.getElementById('adminBtn').className = isAdmin ? 'admin' : '';
-document.getElementById('roleLabel').textContent = isAdmin ? 'Modalità: ADMIN (puoi modificare)' : 'Modalità: Condomino (solo lettura)';
+function saveUsers(){ localStorage.setItem('cs_users', JSON.stringify(users)); }
+function showTab(name){ document.querySelectorAll('.section').forEach(s=>s.classList.remove('active')); document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active')); document.getElementById(name).classList.add('active'); document.getElementById('nav-'+name).classList.add('active'); }
+function login(){
+const nome=document.getElementById('nomeInput').value.trim();
+const cognome=document.getElementById('cognomeInput').value.trim();
+const pwd=document.getElementById('passwordInput').value.trim();
+const err=document.getElementById('loginErr');
+if(!nome||!cognome||!pwd){ err.textContent="Compila Nome, Cognome e Password"; err.style.display='block'; return; }
+if(nome.toLowerCase()===ADMIN_NOME.toLowerCase() && cognome.toLowerCase()===ADMIN_COGNOME.toLowerCase()){
+if(pwd===ADMIN_PWD){ currentUser={nome,cognome,ruolo:'amministratore'}; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp(); } else { err.textContent="Password Amministratore errata!"; err.style.display='block'; } return;
 }
-function toggleAdmin(){
-if(isAdmin){ isAdmin=false; localStorage.setItem('isAdmin','false'); updateUI(); return; }
-document.getElementById('adminModal').classList.add('show');
+const found=users.find(u=>u.nome.toLowerCase()===nome.toLowerCase() && u.cognome.toLowerCase()===cognome.toLowerCase() && u.password===pwd);
+if(found){ currentUser=found; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp(); } else { err.textContent="Account non trovato. Se è la prima volta clicca Crea nuovo account"; err.style.display='block'; }
 }
-function closeModal(){ document.getElementById('adminModal').classList.remove('show'); document.getElementById('pwdErr').style.display='none'; document.getElementById('pwdInput').value=''; }
-function checkPwd(){
-if(document.getElementById('pwdInput').value === ADMIN_PWD){
-isAdmin=true; localStorage.setItem('isAdmin','true'); closeModal(); updateUI();
-}else{ document.getElementById('pwdErr').style.display='block'; }
+function registra(){
+const nome=document.getElementById('nomeInput').value.trim();
+const cognome=document.getElementById('cognomeInput').value.trim();
+const pwd=document.getElementById('passwordInput').value.trim();
+const err=document.getElementById('loginErr');
+if(!nome||!cognome||!pwd){ err.textContent="Compila Nome, Cognome e scegli Password"; err.style.display='block'; return; }
+if(pwd.length<4){ err.textContent="Password minimo 4 caratteri"; err.style.display='block'; return; }
+if(users.find(u=>u.nome.toLowerCase()===nome.toLowerCase() && u.cognome.toLowerCase()===cognome.toLowerCase())){ err.textContent="Account già esistente, fai Accedi"; err.style.display='block'; return; }
+const newUser={nome,cognome,password:pwd,ruolo:'condomino'}; users.push(newUser); saveUsers(); currentUser=newUser; localStorage.setItem('cs_current',JSON.stringify(currentUser)); initApp();
 }
-function showTab(name){
-document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-document.getElementById(name).classList.add('active');
-document.getElementById('nav-'+name).classList.add('active');
-window.scrollTo(0,0);
+function logout(){ localStorage.removeItem('cs_current'); location.reload(); }
+function pagaOnline(){
+if(STRIPE_LINK.includes("test_")){
+alert("Paga Online è attivo come opzione aggiuntiva.\n\nPer i pagamenti veri:\n1. Vai su stripe.com\n2. Crea Payment Link\n3. Sostituisci STRIPE_LINK nel codice");
+return;
 }
-updateUI();
+window.open(STRIPE_LINK,"_blank");
+}
+function initApp(){
+if(!currentUser){ document.getElementById('loginScreen').classList.remove('hidden'); return; }
+document.getElementById('loginScreen').classList.add('hidden');
+document.getElementById('userDisplay').textContent=currentUser.nome+" "+currentUser.cognome;
+const isAdmin=currentUser.ruolo==='amministratore';
+document.body.classList.toggle('is-admin',isAdmin);
+document.getElementById('roleDisplay').textContent=isAdmin ? "Amministratore" : "Condomino";
+document.getElementById('welcomeText').textContent="Benvenuto "+currentUser.nome;
+const lista=document.getElementById('listaPagamenti');
+if(isAdmin){
+lista.innerHTML=`<div class="item"><span>Rossi Mario - Ottobre</span><div><b>Non pagato</b><button class="admin-only btn-black" style="width:auto;padding:6px 12px;font-size:12px;margin-left:8px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></div></div><div class="item"><span>Bianchi Luca - Ottobre</span><div><b style="color:green;">Pagato</b></div></div>`;
+} else {
+lista.innerHTML=`<div class="item"><span>Quota Ottobre - ${currentUser.cognome} ${currentUser.nome}</span><div><b>Non pagato</b></div></div>`;
+}
+}
+initApp();
 </script>
 </body>
-                                                                    </html>
+  </html>
