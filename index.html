@@ -2,137 +2,168 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Casa Semplice</title>
+<title>Residenza Magnolia</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,sans-serif;}
-body{background:#f4f5f7;color:#111;}
-.login-screen{position:fixed;inset:0;background:#f4f5f7;display:flex;align-items:center;justify-content:center;padding:20px;z-index:100;}
+body{background:#f5f5f5;color:#111;}
+.login-screen{position:fixed;inset:0;background:#f5f5f5;z-index:100;display:flex;align-items:center;justify-content:center;padding:20px;}
 .login-screen.hidden{display:none;}
-.login-box{background:white;border-radius:24px;padding:32px;width:100%;max-width:380px;box-shadow:0 8px 30px rgba(0,0,0,0.08);}
-.login-box h1{text-align:center;font-size:24px;}.login-box p.sub{text-align:center;color:#888;font-size:13px;margin:8px 0 20px;}
-.login-box input{width:100%;padding:14px;border:1px solid #e5e5e5;border-radius:12px;margin-bottom:10px;font-size:15px;background:#fafafa;}
-.btn-black{background:#111;color:white;border:none;width:100%;padding:14px;border-radius:12px;font-weight:600;cursor:pointer;}
-.btn-light{background:white;border:1px solid #ddd;width:100%;padding:12px;border-radius:12px;font-weight:600;cursor:pointer;margin-top:8px;}
-header{background:white;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eee;position:sticky;top:0;z-index:10;}
-main{padding:14px;max-width:480px;margin:0 auto 90px auto;}
-.card{background:white;border-radius:18px;padding:18px;margin-bottom:14px;box-shadow:0 2px 10px rgba(0,0,0,0.04);}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.stat{background:#f8f8fa;border-radius:14px;padding:14px;text-align:center;border:1px solid #f0f0f0;}
-.quick{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
-.quick button{flex:1 1 48%;background:#f8f8fa;border:1px solid #eee;border-radius:12px;padding:14px;font-weight:600;cursor:pointer;}
-.section{display:none;}.section.active{display:block;}
-.item{border:1px solid #eee;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;background:white;}
-.badge{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
-.badge-open{background:#ffe5e5;color:#c00;}.badge-pay{background:#e6f4ea;color:#0a7a2a;}
-.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:8px 0 12px;z-index:20;}
-.nav-item{border:none;background:none;color:#999;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:6px 14px;border-radius:10px;}
-.nav-item.active{color:#111;background:#f4f5f7;}
-.admin-only{display:none!important;} body.is-admin.admin-only{display:inline-flex!important;}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.4);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;}
-.modal.open{display:flex;}.modal-box{background:white;border-radius:18px;padding:20px;width:100%;max-width:380px;}
-.modal-box input,.modal-box textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:10px;}
+.login-box{background:white;border-radius:20px;padding:28px;width:100%;max-width:360px;}
+.login-box input{width:100%;padding:14px;border-radius:12px;border:1px solid #e5e5e5;background:#fafafa;margin-bottom:10px;}
+.btn-black{background:#111;color:white;border:none;width:100%;padding:14px;border-radius:12px;font-weight:700;cursor:pointer;}
+.btn-white{background:white;border:1px solid #ddd;width:100%;padding:12px;border-radius:12px;font-weight:600;margin-top:8px;cursor:pointer;}
+.top{padding:18px 20px 0 20px;}
+.top small{font-size:10px;letter-spacing:1px;color:#888;}
+.top h1{font-size:28px;margin-top:4px;}
+.card-black{background:#111;color:white;border-radius:22px;padding:20px;margin:16px 20px;}
+.card-black h2{font-size:20px;}
+.card-black p{font-size:13px;opacity:0.7;margin-top:4px;}
+.btn-cam{background:white;color:#111;border:none;padding:12px 18px;border-radius:12px;font-weight:700;display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:14px;}
+.card{background:white;border-radius:20px;padding:18px;margin:12px 20px;}
+.label{font-size:10px;letter-spacing:1px;color:#888;margin-bottom:6px;}
+.big-price{font-size:32px;font-weight:800;}
+.btn-arrow{background:#f5f5f5;border:none;width:100%;padding:12px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;margin-top:12px;cursor:pointer;font-weight:600;}
+.badge-live{font-size:10px;background:#e6f4ea;color:#0a7a2a;padding:4px 8px;border-radius:20px;}
+.guasto-card{background:white;border-radius:20px;margin:12px 20px;overflow:hidden;}
+.guasto-card img{width:100%;height:180px;object-fit:cover;display:block;}
+.guasto-info{padding:14px;}
+.avatar{width:28px;height:28px;background:#eee;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;margin-right:8px;}
+.status{float:right;padding:4px 8px;border-radius:12px;font-size:10px;font-weight:700;}
+.status-aperta{background:#ffe5e5;color:#c00;}
+.status-corso{background:#fff3c4;color:#8a6d00;}
+.status-risolta{background:#e6f4ea;color:#0a7a2a;}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:10px 10px 14px 10px;}
+.nav-item{border:none;background:none;color:#999;font-size:11px;display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;padding:8px 18px;border-radius:20px;}
+.nav-item.active{background:#111;color:white;}
+.section{display:none;padding-bottom:90px;}
+.section.active{display:block;}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:none;z-index:60;padding:20px;align-items:end;}
+.modal.open{display:flex;}
+.modal-box{background:white;border-radius:22px 22px 0 0;padding:20px;width:100%;max-height:90vh;overflow:auto;}
+.input{width:100%;padding:14px;background:#f5f5f5;border:none;border-radius:12px;margin-top:10px;}
+.cat{display:inline-block;padding:8px 14px;background:#f5f5f5;border-radius:20px;font-size:13px;margin:4px;border:1px solid transparent;cursor:pointer;}
+.cat.active{background:#111;color:white;}
+.upload{border:2px dashed #ddd;border-radius:16px;padding:30px;text-align:center;margin-top:12px;cursor:pointer;}
+.progress{height:6px;background:#eee;border-radius:10px;margin-top:8px;overflow:hidden;}
+.progress div{height:100%;background:#111;}
 </style>
 </head>
 <body>
 
 <div id="loginScreen" class="login-screen">
 <div class="login-box">
-<h1>Casa Semplice</h1>
-<p class="sub">Accesso con Nome e Cognome</p>
+<h2 style="text-align:center;">Casa Semplice</h2>
+<p style="text-align:center;color:#888;font-size:13px;margin:8px 0 18px;">Accedi con Nome e Cognome</p>
 <input id="nomeInput" placeholder="Nome">
 <input id="cognomeInput" placeholder="Cognome">
-<input id="passwordInput" type="password" placeholder="Password personale">
+<input id="passwordInput" type="password" placeholder="Password">
 <button class="btn-black" onclick="login()">Accedi</button>
-<button class="btn-light" onclick="registra()">Crea nuovo account</button>
-<p id="loginErr" style="color:#c00;font-size:12px;margin-top:10px;display:none;"></p>
-<p style="font-size:10px;color:#aaa;text-align:center;margin-top:14px;">Admin prova: Amministratore Condominio / amministratore2024</p>
+<button class="btn-white" onclick="registra()">Crea account</button>
+<p id="loginErr" style="color:red;font-size:12px;display:none;margin-top:8px;"></p>
+<p style="font-size:10px;color:#aaa;text-align:center;margin-top:12px;">Admin: Amministratore Condominio / amministratore2024</p>
 </div>
 </div>
 
-<header>
-<div><b id="userDisplay">Casa Semplice</b><div id="roleDisplay" style="font-size:11px;color:#888;"></div></div>
-<button onclick="logout()" style="border:1px solid #ddd;background:white;padding:6px 12px;border-radius:8px;font-size:12px;">Esci</button>
-</header>
-
-<main>
 <div id="home" class="section active">
+<div class="top"><small>RESIDENZA MAGNOLIA</small><h1 id="ciaoText">Ciao, Simone</h1><div style="font-size:13px;color:#666;" id="appText">Appartamento 4B</div></div>
+<div class="card-black">
+<h2>Segnala un guasto</h2>
+<p>Scatta una foto e avvisa tutti in 5 secondi.</p>
+<div style="display:flex;gap:10px;">
+<button class="btn-cam" onclick="openSegnala()"><span>◉</span> Fotocamera</button>
+<button style="background:#222;color:white;border:none;width:40px;border-radius:12px;" onclick="openSegnala()">✎</button>
+</div>
+<p style="margin-top:12px;font-size:11px;opacity:0.5;" id="numGuasti">2 guasti da risolvere nel condominio</p>
+</div>
 <div class="card">
-<h2 id="welcomeText">Benvenuto</h2>
-<p style="font-size:13px;color:#666;margin-top:4px;">Via Roma 12 - Gestione condominiale</p>
-<div class="grid2" style="margin-top:16px;">
-<div class="stat"><b style="font-size:22px;">5</b><br><span style="font-size:12px;color:#666;">Condomini</span></div>
-<div class="stat"><b style="font-size:22px;" id="statGuasti">2</b><br><span style="font-size:12px;color:#666;">Guasti aperti</span></div>
-<div class="stat"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo cassa</span></div>
-<div class="stat"><b>3</b><br><span style="font-size:12px;color:#666;">Documenti</span></div>
-</div>
-<div class="quick">
-<button onclick="showTab('guasti')">Segnala Guasto</button>
-<button onclick="showTab('cassa')">Cassa</button>
-<button onclick="showTab('vota')">Votazioni</button>
-<button onclick="alert('Documenti: regolamento.pdf, bilancio.pdf')">Documenti</button>
+<div class="label">LE TUE QUOTE</div>
+<div class="big-price">Devi 40,00 €</div>
+<button class="btn-arrow" onclick="showTab('cassa')">Vai alla cassa <span>→</span></button>
+<div style="margin-top:14px;border:1px solid #111;border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center;">
+<div><b style="font-size:13px;">Paga Online</b><br><span style="font-size:11px;color:#666;">Opzione aggiuntiva</span></div>
+<button onclick="pagaOnline()" style="background:#111;color:white;border:none;padding:8px 14px;border-radius:10px;font-weight:700;">Paga</button>
 </div>
 </div>
-<div class="card"><h3>Avvisi</h3><div class="item"><span>Manutenzione ascensore Lunedì</span><span class="badge badge-open">Nuovo</span></div></div>
+<div class="card">
+<div style="display:flex;justify-content:space-between;"><div class="label">VOTAZIONE IN CORSO</div><span class="badge-live">● Live</span></div>
+<h3 style="margin-top:6px;">Approvi il preventivo di €48.000 per il rifacimento della facciata?</h3>
+<p style="font-size:12px;color:#888;margin-top:6px;">12/20 condòmini hanno votato</p>
+<button class="btn-black" style="margin-top:12px;display:flex;justify-content:space-between;" onclick="showTab('vota')"><span>◉ Hai votato - Vedi risultati</span><span>→</span></button>
+</div>
 </div>
 
 <div id="guasti" class="section">
-<div class="card">
-<h2>Guasti</h2>
-<div id="listaGuasti" style="margin-top:12px;"></div>
-<button class="btn-black admin-only" onclick="openModal('guastoModal')" style="margin-top:12px;">+ Aggiungi guasto (Admin)</button>
-<button class="btn-black" onclick="openModal('guastoModal')" style="margin-top:12px;">+ Segnala Guasto</button>
-</div>
+<div class="top"><h1>Guasti</h1></div>
+<div id="listaGuasti"></div>
+<button class="btn-black" style="margin:20px;width:calc(100% - 40px);" onclick="openSegnala()">+ Segnala guasto</button>
 </div>
 
 <div id="cassa" class="section">
-<div class="card">
-<h2>Cassa Condominiale</h2>
-<div class="grid2" style="margin:14px 0;">
-<div class="stat"><b>€ 2.450</b><br><span style="font-size:12px;color:#666;">Saldo</span></div>
-<div class="stat"><b>€ 320</b><br><span style="font-size:12px;color:#666;">Da riscuotere</span></div>
+<div class="top"><h1>Cassa</h1></div>
+<div class="card-black">
+<div class="label" style="color:#888;">QUOTE SALDATE</div>
+<div style="font-size:28px;font-weight:800;margin-top:6px;">12/20 <span style="font-size:14px;font-weight:400;opacity:0.6;">hanno pagato</span></div>
+<div class="progress"><div style="width:60%;"></div></div>
+<div style="display:flex;justify-content:space-between;margin-top:16px;">
+<div><small style="opacity:0.6;">Saldo cassa</small><div style="font-weight:800;font-size:18px;">2630,00 €</div></div>
+<div style="text-align:right;"><small style="opacity:0.6;">Devi</small><div style="font-weight:800;font-size:18px;">40,00 €</div></div>
 </div>
-<div style="border:1px solid #111;border-radius:14px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
-<div><b>Paga Online</b><br><span style="font-size:11px;color:#666;">Opzione aggiuntiva • Carta, Apple Pay</span></div>
-<button onclick="pagaOnline()" style="background:#111;color:white;border:none;padding:10px 16px;border-radius:10px;font-weight:700;cursor:pointer;">Paga</button>
 </div>
-<div id="listaPagamenti"></div>
-</div>
+<div style="padding:0 20px;font-size:10px;letter-spacing:1px;color:#888;margin-top:10px;">SPESE DEL CONDOMINIO</div>
+<div id="listaCassa"></div>
 </div>
 
 <div id="vota" class="section">
-<div class="card"><h2>Votazioni</h2><div id="listaVoti" style="margin-top:12px;"></div></div>
+<div class="top"><span class="badge-live">● VOTAZIONE ATTIVA</span><h1 style="margin-top:10px;">Approvi il preventivo di €48.000 per il rifacimento della facciata?</h1><p style="font-size:13px;color:#666;margin-top:8px;">Lavori previsti da marzo, ditta Edil Milano. Quota stimata per appartamento: €2.400.<br>12/20 condòmini hanno votato</p></div>
+<div class="card">
+<div style="display:flex;justify-content:space-between;"><b>RISULTATI IN TEMPO REALE</b><span style="color:green;font-size:11px;">● Hai votato</span></div>
+<div style="margin-top:16px;"><div style="display:flex;justify-content:space-between;"><span>Sì, approvo (il tuo voto)</span><b>58%</b></div><div class="progress"><div style="width:58%;"></div></div><small>7 voti</small></div>
+<div style="margin-top:14px;"><div style="display:flex;justify-content:space-between;"><span>No, non approvo</span><b>25%</b></div><div class="progress"><div style="width:25%;"></div></div><small>3 voti</small></div>
+<div style="margin-top:14px;"><div style="display:flex;justify-content:space-between;"><span>Mi astengo</span><b>17%</b></div><div class="progress"><div style="width:17%;"></div></div><small>2 voti</small></div>
 </div>
-</main>
+</div>
 
 <nav class="bottom-nav">
-<button class="nav-item active" id="nav-home" onclick="showTab('home')">Home</button>
-<button class="nav-item" id="nav-guasti" onclick="showTab('guasti')">Guasti</button>
-<button class="nav-item" id="nav-cassa" onclick="showTab('cassa')">Cassa</button>
-<button class="nav-item" id="nav-vota" onclick="showTab('vota')">Vota</button>
+<button class="nav-item active" id="nav-home" onclick="showTab('home')"><span>⌂</span>Home</button>
+<button class="nav-item" id="nav-guasti" onclick="showTab('guasti')"><span>🔧</span>Guasti</button>
+<button class="nav-item" id="nav-cassa" onclick="showTab('cassa')"><span>🗂</span>Cassa</button>
+<button class="nav-item" id="nav-vota" onclick="showTab('vota')"><span>☑</span>Vota</button>
 </nav>
 
-<div id="guastoModal" class="modal"><div class="modal-box"><h3>Segnala Guasto</h3><input id="gTitolo" placeholder="Titolo es. Ascensore"><input id="gLuogo" placeholder="Luogo es. Scala A"><textarea id="gDesc" placeholder="Descrizione"></textarea><button class="btn-black" onclick="addGuasto()" style="margin-top:10px;">Invia</button><button class="btn-light" onclick="closeModal('guastoModal')">Annulla</button></div></div>
+<div id="segnalaModal" class="modal"><div class="modal-box">
+<div style="display:flex;justify-content:space-between;"><h2>Segnala un guasto</h2><button onclick="closeModal()" style="border:none;background:none;font-size:20px;">×</button></div>
+<p style="font-size:12px;color:#666;">Foto, titolo e via: tutti i condòmini lo vedranno subito.</p>
+<div class="upload" onclick="document.getElementById('fileInput').click()"><div id="uploadPreview"><div style="font-size:24px;">📷</div><div style="font-size:13px;margin-top:6px;">Scatta o carica una foto</div></div><img id="previewImg" style="width:100%;border-radius:12px;display:none;max-height:200px;object-fit:cover;"></div>
+<input type="file" id="fileInput" accept="image/*" capture="environment" style="display:none;" onchange="loadFile(event)">
+<div style="font-size:10px;color:#888;margin-top:14px;">TITOLO</div>
+<input class="input" id="titoloInput" placeholder="Es. Luce androne fulminata">
+<div style="font-size:10px;color:#888;margin-top:12px;">CATEGORIA</div>
+<div style="margin-top:6px;"><span class="cat" onclick="selCat(this)">Idraulica</span><span class="cat" onclick="selCat(this)">Elettrico</span><span class="cat" onclick="selCat(this)">Ascensore</span><span class="cat" onclick="selCat(this)">Pulizie</span><span class="cat" onclick="selCat(this)">Giardino</span><span class="cat active" onclick="selCat(this)">Altro</span></div>
+<div style="font-size:10px;color:#888;margin-top:12px;">DETTAGLI</div>
+<textarea class="input" id="dettagliInput" placeholder="Dove si trova? Da quando?" style="height:80px;"></textarea>
+<button class="btn-black" style="margin-top:16px;" onclick="pubblicaGuasto()">Pubblica segnalazione</button>
+</div></div>
 
 <script>
 let currentUser=JSON.parse(localStorage.getItem('cs_current')||'null');
 let users=JSON.parse(localStorage.getItem('cs_users')||'[]');
-let guasti=JSON.parse(localStorage.getItem('cs_guasti')||'[{"titolo":"Ascensore bloccato","luogo":"Scala A","stato":"Aperto"},{"titolo":"Perdita acqua garage","luogo":"Garage","stato":"Aperto"}]');
-let voti=JSON.parse(localStorage.getItem('cs_voti')||'[{"q":"Installare videosorveglianza?","si":2,"no":1}]');
-const STRIPE_LINK="https://buy.stripe.com/test_...";
-function save(){localStorage.setItem('cs_users',JSON.stringify(users));localStorage.setItem('cs_guasti',JSON.stringify(guasti));localStorage.setItem('cs_voti',JSON.stringify(voti));}
+let guasti=JSON.parse(localStorage.getItem('cs_guasti_foto')||'[{"titolo":"Bacheca condominiale","luogo":"App 1D - circa 3 ore fa","cat":"Altro","stato":"Aperta","img":"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500","avatar":"LC","nome":"Luca Colombo"},{"titolo":"Luce androne fulminata","luogo":"Scala B, piano terra: la plafoniera è spenta da ieri sera.","cat":"Elettrico","stato":"In corso","img":"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=500","avatar":"MB","nome":"Matteo Bruno"},{"titolo":"Perdita rubinetto locale contatori","luogo":"Gocciola costantemente, c'è una pozza sul pavimento.","cat":"Idraulica","stato":"Risolto","img":"https://images.unsplash.com/photo-1518770660439-4636190af475?w=500","avatar":"MB","nome":"Marco Bianchi"},{"titolo":"Ascensore bloccato al 3° piano","luogo":"Tecnico intervenuto, ora funziona regolarmente.","cat":"Ascensore","stato":"Risolto","img":"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500","avatar":"MD","nome":"Martina De Luca"}]');
+let catSel="Altro"; let imgData="";
+const STRIPE="https://buy.stripe.com/test_123";
+function save(){localStorage.setItem('cs_users',JSON.stringify(users));localStorage.setItem('cs_guasti_foto',JSON.stringify(guasti));}
 function showTab(n){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));document.getElementById(n).classList.add('active');document.getElementById('nav-'+n).classList.add('active');}
-function login(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila tutto";er.style.display='block';return;}if(no.toLowerCase()=="amministratore"&&co.toLowerCase()=="condominio"&&pw=="amministratore2024"){currentUser={nome:no,cognome:co,ruolo:"amministratore"};localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();return;}const f=users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase()&&u.password==pw);if(f){currentUser=f;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}else{er.textContent="Account non trovato, fai Crea nuovo account";er.style.display='block';}}
-function registra(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila Nome, Cognome, Password";er.style.display='block';return;}if(users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase())){er.textContent="Esiste già, fai Accedi";er.style.display='block';return;}const nu={nome:no,cognome:co,password:pw,ruolo:"condomino"};users.push(nu);save();currentUser=nu;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}
-function logout(){localStorage.removeItem('cs_current');location.reload();}
-function openModal(id){document.getElementById(id).classList.add('open');}function closeModal(id){document.getElementById(id).classList.remove('open');}
-function addGuasto(){const t=document.getElementById('gTitolo').value;const l=document.getElementById('gLuogo').value;if(!t)return;guasti.unshift({titolo:t,luogo:l||"Generale",stato:"Aperto"});save();renderGuasti();closeModal('guastoModal');document.getElementById('gTitolo').value="";document.getElementById('gLuogo').value="";}
-function renderGuasti(){const c=document.getElementById('listaGuasti');c.innerHTML=guasti.map((g,i)=>`<div class="item"><div><b>${g.titolo}</b><br><span style="font-size:12px;color:#666;">${g.luogo}</span></div><div style="text-align:right;"><span class="badge ${g.stato=='Aperto'?'badge-open':'badge-pay'}">${g.stato}</span><br><button class="admin-only btn-light" style="padding:4px 8px;font-size:11px;margin-top:6px;" onclick="chiudiGuasto(${i})">Chiudi</button></div></div>`).join('');document.getElementById('statGuasti').textContent=guasti.filter(g=>g.stato=='Aperto').length;}
-function chiudiGuasto(i){guasti[i].stato=guasti[i].stato=='Aperto'?'Chiuso':'Aperto';save();renderGuasti();}
-function renderVoti(){const c=document.getElementById('listaVoti');c.innerHTML=voti.map((v,i)=>`<div class="item"><div><b>${v.q}</b><br><span style="font-size:12px;color:#666;">Sì: ${v.si} No: ${v.no}</span></div><div><button class="btn-black" style="width:auto;padding:8px 14px;" onclick="vota(${i},'si')">Sì</button> <button class="btn-light" style="width:auto;padding:8px 14px;display:inline;" onclick="vota(${i},'no')">No</button></div></div>`).join('');}
-function vota(i,t){if(t=='si')voti[i].si++;else voti[i].no++;save();renderVoti();alert('Voto registrato!');}
-function pagaOnline(){if(STRIPE_LINK.includes('test_')){alert('Paga Online è attivo come opzione aggiuntiva. Per attivare pagamenti veri, crea un Payment Link su stripe.com e sostituisci STRIPE_LINK nel codice.');return;}window.open(STRIPE_LINK,'_blank');}
-function initApp(){if(!currentUser){document.getElementById('loginScreen').classList.remove('hidden');return;}document.getElementById('loginScreen').classList.add('hidden');document.getElementById('userDisplay').textContent=currentUser.nome+" "+currentUser.cognome;document.getElementById('roleDisplay').textContent=currentUser.ruolo=='amministratore'?'Amministratore':'Condomino';document.getElementById('welcomeText').textContent='Benvenuto '+currentUser.nome;document.body.classList.toggle('is-admin',currentUser.ruolo=='amministratore');renderGuasti();renderVoti();const lp=document.getElementById('listaPagamenti');if(currentUser.ruolo=='amministratore'){lp.innerHTML=`<div class="item"><span>Rossi Mario - Ottobre</span><span><b>Non pagato</b> <button class="btn-black" style="width:auto;padding:6px 10px;font-size:12px;margin-left:6px;" onclick="this.parentElement.innerHTML='<b style=color:green>Pagato</b>'">Segna Pagato</button></span></div><div class="item"><span>Bianchi Luca</span><span style="color:green;font-weight:700;">Pagato</span></div>`;}else{lp.innerHTML=`<div class="item"><span>Quota Ottobre - ${currentUser.cognome} ${currentUser.nome}</span><span>Non pagato</span></div>`;}}
-initApp();
+function login(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila tutto";er.style.display='block';return;}if(no.toLowerCase()=="amministratore"&&co.toLowerCase()=="condominio"&&pw=="amministratore2024"){currentUser={nome:no,cognome:co,ruolo:"amministratore"};localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();return;}const f=users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase()&&u.password==pw);if(f){currentUser=f;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}else{er.textContent="Non trovato, crea account";er.style.display='block';}}
+function registra(){const no=document.getElementById('nomeInput').value.trim();const co=document.getElementById('cognomeInput').value.trim();const pw=document.getElementById('passwordInput').value.trim();const er=document.getElementById('loginErr');if(!no||!co||!pw){er.textContent="Compila tutto";er.style.display='block';return;}if(users.find(u=>u.nome.toLowerCase()==no.toLowerCase()&&u.cognome.toLowerCase()==co.toLowerCase())){er.textContent="Esiste già";er.style.display='block';return;}const nu={nome:no,cognome:co,password:pw,ruolo:"condomino"};users.push(nu);save();currentUser=nu;localStorage.setItem('cs_current',JSON.stringify(currentUser));initApp();}
+function initApp(){if(!currentUser){return;}document.getElementById('loginScreen').classList.add('hidden');document.getElementById('ciaoText').textContent="Ciao, "+currentUser.nome;document.getElementById('appText').textContent=currentUser.cognome+" - "+(currentUser.ruolo=='amministratore'?'Amministratore':'Appartamento 4B');renderGuasti();renderCassa();}
+function renderGuasti(){document.getElementById('listaGuasti').innerHTML=guasti.map(g=>`<div class="guasto-card"><div style="padding:10px 14px;display:flex;align-items:center;justify-content:space-between;"><div><span class="avatar">${g.avatar}</span><span style="font-size:13px;font-weight:600;">${g.nome}</span><span style="font-size:11px;color:#888;"> - ${g.luogo.split('-')[0]||''}</span></div><span class="status ${g.stato=='Aperta'?'status-aperta':g.stato=='In corso'?'status-corso':'status-risolta'}">● ${g.stato}</span></div><img src="${g.img}"><div class="guasto-info"><b>${g.titolo}</b><p style="font-size:13px;color:#555;margin-top:4px;">${g.luogo}</p><small style="color:#888;">${g.cat}</small></div></div>`).join('');document.getElementById('numGuasti').textContent=guasti.filter(g=>g.stato!='Risolto').length+" guasti da risolvere nel condominio";}
+function renderCassa(){document.getElementById('listaCassa').innerHTML=`<div class="card"><div style="display:flex;justify-content:space-between;"><span><b>🛠 Riparazione cancello carraio</b><br><small style="color:#666;">Sostituzione motore e fotocellula<br>Scadenza 20 2026<br>12/20 pagato</small></span><b>40,00 €</b></div><button class="btn-black" style="margin-top:10px;">Segna come pagato</button></div><div class="card"><div style="display:flex;justify-content:space-between;"><span><b>🧹 Pulizia scala ottobre</b><br><small style="color:#666;">Impresa Splendor Srl<br>Scadenza 5 ott 2026<br>18/20 pagato</small></span><b>25,00 €</b></div><div style="margin-top:10px;background:#e6f4ea;color:#0a7a2a;padding:10px;border-radius:12px;text-align:center;font-weight:700;">✓ Pagato</div></div><div class="card"><div style="display:flex;justify-content:space-between;"><span><b>📄 Quota ordinaria ottobre</b><br><small style="color:#666;">Luce scale, ascensore, assicurazione<br>Scadenza 25 set 2026<br>20/20 pagato</small></span><b>85,00 €</b></div><div style="margin-top:10px;background:#e6f4ea;color:#0a7a2a;padding:10px;border-radius:12px;text-align:center;font-weight:700;">✓ Pagato</div></div>`;}
+function openSegnala(){document.getElementById('segnalaModal').classList.add('open');}
+function closeModal(){document.getElementById('segnalaModal').classList.remove('open');}
+function selCat(el){document.querySelectorAll('.cat').forEach(c=>c.classList.remove('active'));el.classList.add('active');catSel=el.textContent;}
+function loadFile(e){const file=e.target.files[0];const reader=new FileReader();reader.onload=function(){imgData=reader.result;document.getElementById('previewImg').src=imgData;document.getElementById('previewImg').style.display='block';document.getElementById('uploadPreview').style.display='none';};reader.readAsDataURL(file);}
+function pubblicaGuasto(){const tit=document.getElementById('titoloInput').value||"Guasto senza titolo";const det=document.getElementById('dettagliInput').value||"Segnalato ora";const img=imgData||"https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500";guasti.unshift({titolo:tit,luogo:det,cat:catSel,stato:"Aperta",img:img,avatar:currentUser.nome.charAt(0)+currentUser.cognome.charAt(0),nome:currentUser.nome+" "+currentUser.cognome});save();renderGuasti();closeModal();document.getElementById('titoloInput').value="";document.getElementById('dettagliInput').value="";imgData="";document.getElementById('previewImg').style.display='none';document.getElementById('uploadPreview').style.display='block';showTab('guasti');}
+function pagaOnline(){alert('Paga Online è attivo come opzione aggiuntiva. Per attivare Stripe, sostituisci STRIPE nel codice con il tuo Payment Link.');}
+if(currentUser){document.getElementById('loginScreen').classList.add('hidden');initApp();}
 </script>
 </body>
   </html>
