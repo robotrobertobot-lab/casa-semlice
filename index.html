@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Casa Semplice FIX</title><style>body{font-family:system-ui;background:#f6f7f9;margin:0;padding-bottom:90px}.card{background:#fff;border-radius:16px;padding:16px;margin:12px;box-shadow:0 2px 8px rgba(0,0,0,.06)}.btn{background:#111;color:#fff;padding:12px;border-radius:12px;border:0;width:100%;font-weight:700}.nav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #eee;text-align:center} </style></head><body>
+<div style="padding:12px;display:flex;justify-content:space-between;align-items:center"><b>🏠 Casa Semplice - FIXATO</b><select id="role" onchange="save()"><option value="condomino">Condomino</option><option value="admin">Admin</option></select></div>
+<div id="app"></div>
+<div class="nav"><div onclick="go('home')">🏠<br><b>Home</b></div><div onclick="go('guasti')">🔧<br><b>Guasti</b></div><div onclick="go('cassa')">💰<br><b>Cassa</b></div><div onclick="go('vota')">🗳️<br><b>Vota</b></div></div>
+<script>
+let role=localStorage.getItem('role')||'condomino';
+let guasti=JSON.parse(localStorage.getItem('guasti')||'[]');
+let cassa=JSON.parse(localStorage.getItem('cassa')||'[{"id":1,"nome":"Marco Rossi","quota":40,"pagato":false},{"id":2,"nome":"Luca Bianchi","quota":40,"pagato":false}]');
+let page='home'; let tmpFoto='';
+function save(){localStorage.setItem('role',document.getElementById('role').value); localStorage.setItem('guasti',JSON.stringify(guasti)); localStorage.setItem('cassa',JSON.stringify(cassa)); render();}
+function go(p){page=p; render();}
+function preview(i){let r=new FileReader(); r.onload=e=>{tmpFoto=e.target.result; document.getElementById('prev').src=tmpFoto; document.getElementById('prev').style.display='block';}; r.readAsDataURL(i.files[0]);}
+function addGuasto(){let d=document.getElementById('desc').value; if(!d)return alert('Descrivi guasto'); guasti.unshift({id:Date.now(),desc:d,stato:'Aperto',data:new Date().toLocaleString(),foto:tmpFoto}); tmpFoto=''; save(); go('guasti');}
+function setStato(id,v){guasti=guasti.map(g=>g.id==id?{...g,stato:v}:g); save();}
+function paga(id){cassa=cassa.map(c=>c.id==id?{...c,pagato:!c.pagato}:c); save();}
+function render(){
+ let roleSel=document.getElementById('role'); if(roleSel) role=roleSel.value;
+ let h='';
+ if(page=='home'){h+=`<div class="card"><h3>Benvenuto ${role}</h3><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px"><div class="card" style="margin:0">5<br>Tot Condomini</div><div class="card" style="margin:0">2<br>Guasti Aperti</div></div><button class="btn" style="margin-top:12px" onclick="go('guasti')">+ Segnala Guasto</button></div><div class="card">Comunicazioni</div>`}
+ if(page=='guasti'){
+  h+=`<div class="card"><h3>Segnala Guasto</h3><input id="desc" placeholder="Es: Perdita acqua scale" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd"><br><br><label class="btn" style="display:block;text-align:center">📷 Scatta Foto VERA<input type="file" accept="image/*" capture="environment" id="foto" style="display:none" onchange="preview(this)"></label><img id="prev" style="width:100%;margin-top:10px;border-radius:12px;display:none"><br><br><button class="btn" onclick="addGuasto()">Invia</button></div>`;
+  guasti.forEach(g=>{h+=`<div class="card"><b>${g.desc}</b><br><small>${g.data}</small><br>${g.foto?`<img src="${g.foto}" style="width:100%;border-radius:12px;margin:8px 0">`:''}<br>`; if(role=='admin'){h+=`Stato: <select onchange="setStato(${g.id},this.value)"><option ${g.stato=='Aperto'?'selected':''}>Aperto</option><option ${g.stato=='In corso'?'selected':''}>In corso</option><option ${g.stato=='Risolto'?'selected':''}>Risolto</option></select> <small>(solo admin)</small>`}else{h+=`<span style="background:#ffe0e0;padding:4px 8px;border-radius:12px">${g.stato}</span> - solo visualizzazione` } h+=`</div>`})
+ }
+ if(page=='cassa'){
+  h+=`<div class="card"><h3>Cassa - Quote</h3></div>`;
+  cassa.forEach(q=>{h+=`<div class="card"><b>${q.nome}</b> - €${q.quota} ${q.pagato?'✅ Pagato':'❌ Da pagare'}<br><br>`; if(role=='admin'){h+=`<button class="btn" onclick="paga(${q.id})">${q.pagato?'Annulla pagamento':'Segna come Pagato (SOLO ADMIN)'}</button>`}else{h+=`<button class="btn" disabled style="opacity:.4">${q.pagato?'Pagato verificato da Admin':'Da pagare €40 - In attesa Admin'}</button>`} h+=`</div>`})
+ }
+ if(page=='vota'){h+=`<div class="card"><h3>Votazioni</h3><p>Esempio: Tinteggiatura scale?</p><button class="btn">Vota SI</button><br><br><button class="btn" style="background:#eee;color:#111">Vota NO</button></div>`}
+ document.getElementById('app').innerHTML=h; document.getElementById('role').value=role;
+}
+render();
+</script></body></html>
