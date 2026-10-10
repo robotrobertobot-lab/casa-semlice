@@ -2,18 +2,18 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <title>Casa Semplice</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif;-webkit-tap-highlight-color:transparent}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
 body{background:#f5f5f3;color:#111}
 .login{position:fixed;inset:0;background:#f5f5f3;z-index:9999;display:flex;align-items:center;justify-content:center;padding:24px}
-.login-box{background:#fff;border-radius:24px;padding:32px 24px;width:100%;max-width:360px;border:1px solid #eee;box-shadow:0 10px 40px rgba(0,0,0,.04)}
+.login-box{background:#fff;border-radius:24px;padding:32px 24px;width:100%;max-width:360px;border:1px solid #eee}
 .login-box h2{font-size:26px;font-weight:800;text-align:center}
 .login-box input{width:100%;padding:15px 16px;border:1.2px solid #ededed;border-radius:14px;background:#fafafa;margin-top:12px;font-size:15px;outline:none}
-.btn{width:100%;padding:14px;border-radius:999px;border:none;font-weight:700;font-size:14px;cursor:pointer;display:flex;justify-content:center;align-items:center}
+.btn{width:100%;padding:14px;border-radius:999px;border:none;font-weight:700;cursor:pointer}
 .btn-black{background:#111;color:#fff}
 .eyebrow{font-size:10px;letter-spacing:.14em;color:#9a9a9a;font-weight:700;text-transform:uppercase}
 .h1{font-size:34px;font-weight:800;margin-top:4px}
@@ -21,7 +21,7 @@ body{background:#f5f5f3;color:#111}
 .card-black{background:#111;color:#fff;border-radius:22px;padding:20px 18px;margin:16px 16px 0 16px}
 .card{background:#fff;border-radius:20px;padding:16px;margin:12px 16px 0 16px;border:1px solid #eee}
 .big{font-size:38px;font-weight:800;margin-top:8px}
-.btn-row{width:100%;background:#f5f5f3;border:none;border-radius:14px;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;margin-top:12px;cursor:pointer}
+.btn-row{width:100%;background:#f5f5f3;border:none;border-radius:14px;padding:13px 14px;display:flex;justify-content:space-between;align-items:center;font-weight:600;margin-top:12px;cursor:pointer}
 .progress{height:4px;background:#eee;border-radius:999px;overflow:hidden;margin-top:10px}
 .progress div{height:100%;background:#111}
 .nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:6px 0 14px 0;z-index:50}
@@ -38,10 +38,8 @@ body{background:#f5f5f3;color:#111}
 .badge-done{background:#dcfce7;color:#166534}.badge-done i{background:#166534}
 .badge i{width:5px;height:5px;border-radius:50%}
 .g-img{width:100%;height:218px;object-fit:cover;display:block;background:#eee}
-.price{font-weight:700;font-size:14px;text-align:right;min-width:90px}
+.price{font-weight:700;font-size:14px;text-align:right}
 .btn-pay{background:#111;color:#fff;border:none;width:100%;border-radius:999px;padding:12px;font-weight:700;margin-top:12px}
-.pagato{background:#e8f5e9;color:#166534;border-radius:999px;padding:11px;text-align:center;font-weight:700;font-size:13px;margin-top:12px}
-.admin-edit{border:1px solid #111;background:#fff;border-radius:999px;padding:5px 10px;font-size:11px;font-weight:700;margin-top:6px}
 .del{border:none;background:#f5f5f3;width:28px;height:28px;border-radius:50%;cursor:pointer;margin-left:6px;font-weight:700}
 .toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#111;color:#fff;padding:13px 18px;border-radius:999px;font-size:13px;display:none;z-index:100}
 .toast.show{display:flex}
@@ -57,80 +55,113 @@ body{background:#f5f5f3;color:#111}
 </style>
 </head>
 <body>
-<div id="login" class="login"><div class="login-box"><h2>Casa Semplice</h2><p style="font-size:13px;color:#8a8a8a;text-align:center;margin-top:8px">Accedi al tuo condominio</p><input id="n" placeholder="Nome (es. Simone)"><input id="c" placeholder="Cognome (es. Rossi)"><input id="app" placeholder="Appartamento (es. 4B)" style="text-transform:uppercase;font-weight:600"><input id="cod" placeholder="Codice Condominio (es. MAGNOLIA)" style="text-transform:uppercase;font-weight:600"><input id="p" type="password" placeholder="Password"><button class="btn btn-black" style="margin-top:18px" onclick="entra()">ACCEDI</button></div></div>
-<div id="home" class="section active"><div style="padding:22px 20px 0 20px"><div class="eyebrow" id="homeEyebrow">BACHECA</div><div class="h1" id="ciao">Ciao</div><div class="sub" id="sub"></div></div><div class="card-black"><h2>Segnala un guasto</h2><p style="font-size:13px;color:#8a8a8a;margin-top:4px">Scatta una foto e avvisa tutti in 5 secondi.</p><div style="display:flex;gap:10px;margin-top:18px"><button style="background:#fff;color:#111;border:none;border-radius:999px;padding:12px 18px;font-weight:700" onclick="openS()">Fotocamera</button></div><div style="font-size:11px;color:#5a5a5a;margin-top:14px" id="note"></div></div><div class="card"><div class="eyebrow">LE TUE QUOTE</div><div class="big" id="deve">Devi 40,00 €</div><button class="btn-row" onclick="go('cassa')">Vai alla cassa <span>→</span></button></div><div class="card"><div class="eyebrow">STORICO SPESE</div><div style="font-size:17px;font-weight:700;margin-top:8px">Quanto hai speso quest'anno?</div><button class="btn btn-black" style="margin-top:14px" onclick="go('storico')">Vedi grafico →</button></div></div>
-<div id="guasti" class="section"><div style="padding:22px 20px 0 20px;display:flex;justify-content:space-between;align-items:center"><div><div class="eyebrow">BACHECA</div><div class="h1" style="font-size:28px">Guasti</div></div><div style="display:flex;gap:8px"><button id="btnClear" style="display:none;border:1px solid #e5e5e5;background:#fff;padding:8px 12px;border-radius:999px;font-size:11px;font-weight:600" onclick="clearAll()">Svuota</button><button class="btn btn-black" style="width:auto;padding:9px 16px;font-size:13px" onclick="openS()">+ Segnala</button></div></div><div id="listG"></div></div>
+<div id="login" class="login"><div class="login-box"><h2>Casa Semplice</h2><p style="font-size:13px;color:#8a8a8a;text-align:center;margin-top:8px">Accedi al tuo condominio</p><input id="n" placeholder="Nome (es. Simone)"><input id="c" placeholder="Cognome (es. Rossi)"><input id="app" placeholder="Appartamento (es. 4B)" style="text-transform:uppercase;font-weight:600"><input id="cod" placeholder="Codice Condominio (es. MAGNOLIA)" style="text-transform:uppercase;font-weight:600"><input id="p" type="password" placeholder="Password"><button class="btn btn-black" style="margin-top:18px" onclick="entra()">ACCEDI</button></div></div><div id="home" class="section active"><div style="padding:22px 20px 0 20px"><div class="eyebrow" id="homeEyebrow">BACHECA</div><div class="h1" id="ciao">Ciao</div><div class="sub" id="sub"></div></div><div class="card-black"><h2>Segnala un guasto</h2><p style="font-size:13px;color:#888;margin-top:4px">Scatta una foto e avvisa tutti in 5 secondi.</p><div style="display:flex;gap:10px;margin-top:18px"><button style="background:#fff;color:#111;border:none;border-radius:999px;padding:12px 18px;font-weight:700" onclick="openS()">Fotocamera</button></div><div style="font-size:11px;color:#aaa;margin-top:14px" id="note"></div></div><div class="card"><div class="eyebrow">LE TUE QUOTE</div><div class="big" id="deve">Devi 0 €</div><button class="btn-row" onclick="go('cassa')">Vai alla cassa <span>→</span></button></div><div class="card"><div class="eyebrow">STORICO SPESE</div><div style="font-weight:700;margin-top:8px">Totale condominio e singolo appartamento</div><button class="btn btn-black" style="margin-top:14px" onclick="go('storico')">Vedi grafico →</button></div></div>
+
+<div id="guasti" class="section"><div style="padding:22px 20px 0 20px;display:flex;justify-content:space-between"><div><div class="eyebrow">BACHECA</div><div class="h1" style="font-size:28px">Guasti</div></div><button class="btn btn-black" style="width:auto;padding:9px 16px;font-size:13px" onclick="openS()">+ Segnala</button></div><div id="listG"></div></div>
+
 <div id="cassa" class="section"><div style="padding:22px 20px 0 20px;display:flex;justify-content:space-between"><div><div class="eyebrow">CASSA</div><div class="h1" style="font-size:28px">Cassa</div></div><button id="btnAddSpesa" class="btn btn-black" style="display:none;width:auto;padding:9px 14px;font-size:12px" onclick="addSpesa()">+ Nuova spesa</button></div><div class="card-black"><div class="eyebrow" style="color:#888">QUOTE SALDATE</div><div style="font-size:34px;font-weight:800;margin-top:4px">12/20 <span style="font-size:14px;font-weight:400;color:#888">hanno pagato</span></div><div class="progress"><div style="width:60%"></div></div></div><div id="listC"></div></div>
-<div id="storico" class="section"><div style="padding:22px 20px 0 20px"><div class="eyebrow">CRONOLOGIA SPESE</div><div class="h1" style="font-size:28px">Storico</div><div class="sub" id="storicoSub">Spese per mese</div></div>
+
+<div id="storico" class="section"><div style="padding:22px 20px 0 20px"><div class="eyebrow">CRONOLOGIA SPESE</div><div class="h1" style="font-size:28px">Storico</div><div class="sub" id="storicoSub"></div></div>
 <div style="margin:16px 16px 0 16px;display:flex;background:#fff;border:1px solid #eee;border-radius:999px;padding:4px">
 <button id="btnTot" onclick="setStorico('totale')" style="flex:1;border:none;border-radius:999px;padding:10px;font-weight:700;font-size:13px;background:#111;color:#fff">Totale Condominio</button>
-<button id="btnSing" onclick="setStorico('singolo')" style="flex:1;border:none;border-radius:999px;padding:10px;font-weight:700;font-size:13px;background:transparent;color:#888">Singolo</button>
+<button id="btnSing" onclick="setStorico('singolo')" style="flex:1;border:none;border-radius:999px;padding:10px;font-weight:700;font-size:13px;background:transparent;color:#888">Singolo App.</button>
 </div>
-<div class="card-black"><div class="eyebrow" style="color:#888" id="labelTot">TOTALE SPESO 2026</div><div style="font-size:36px;font-weight:800;margin-top:6px" id="totAnno">€ 0</div><div style="font-size:13px;color:#888;margin-top:4px" id="mediaMese">Media €0 / mese</div></div>
-<div class="chart-wrap"><div class="eyebrow" id="labelChart">ANDAMENTO MENSILE</div><canvas id="chartSpese" height="160" style="margin-top:12px"></canvas></div>
-<div class="card"><div class="eyebrow">DETTAGLIO PER MESE - TOTALE E SINGOLO</div><div id="listStorico" style="margin-top:12px"></div></div>
+<div class="card-black"><div class="eyebrow" style="color:#888" id="labelTot">TOTALE 2026</div><div style="font-size:36px;font-weight:800;margin-top:6px" id="totAnno">€ 0</div><div style="font-size:13px;color:#888;margin-top:4px" id="mediaMese"></div></div>
+<div class="chart-wrap"><div class="eyebrow" id="labelChart">ANDAMENTO MENSILE - MONTAGNE</div><canvas id="chartSpese" height="160" style="margin-top:12px"></canvas></div>
+<div class="card"><div class="eyebrow">DETTAGLIO MESE PER MESE</div><div id="listStorico" style="margin-top:12px"></div></div>
 </div>
+
 <div class="nav">
 <button id="nav-home" class="active" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span>Home</span></button>
 <button id="nav-guasti" onclick="go('guasti')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg><span>Guasti</span></button>
 <button id="nav-cassa" onclick="go('cassa')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg><span>Cassa</span></button>
 <button id="nav-storico" onclick="go('storico')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg><span>Storico</span></button>
 </div>
+
 <div class="toast" id="toast"></div>
 <div id="sheet" class="sheet"><div class="sheet-inner"><h2 style="font-size:20px;font-weight:800">Segnala un guasto</h2><div class="upload" onclick="document.getElementById('file').click()"><div id="upT">Fotocamera</div><img id="prev"></div><input type="file" id="file" accept="image/*" style="display:none" onchange="loadF(event)"><input class="input" id="tit" placeholder="Titolo"><div style="margin-top:8px"><span class="chip active" onclick="selC(this)">Altro</span><span class="chip" onclick="selC(this)">Elettrico</span><span class="chip" onclick="selC(this)">Idraulica</span></div><textarea class="input" id="det" style="height:78px" placeholder="Dettagli"></textarea><button class="btn btn-black" style="margin-top:18px" onclick="pub()">Pubblica</button><button onclick="closeS()" style="width:100%;margin-top:8px;border:none;background:none;color:#888">Chiudi</button></div></div>
 <script>
-let cur=JSON.parse(localStorage.getItem('cs_cur')||'null');
+let cur=null;
+try{cur=JSON.parse(localStorage.getItem('cs_cur')||'null');}catch(e){cur=null;}
 let defaultGuasti=[
 {id:101,tit:"Luce androne fulminata",desc:"Scala B, piano terra",cat:"Elettrico",stato:"Aperta",img:"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800",nome:"Luca Colombo",sig:"LC",quando:"3 ore fa"},
-{id:102,tit:"Perdita rubinetto",desc:"Gocciola in bagno comune",cat:"Idraulica",stato:"In corso",img:"https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800",nome:"Marco Bianchi",sig:"MB",quando:"1 giorno fa"}
+{id:102,tit:"Perdita rubinetto",desc:"Gocciola",cat:"Idraulica",stato:"In corso",img:"https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=800",nome:"Marco Bianchi",sig:"MB",quando:"1 giorno fa"}
 ];
 let defaultSpese=[
-{id:1,tit:"Riparazione cancello",desc:"Sostituzione motore",mese:8,anno:2026,prezzo:40,pag:"12/20"},
-{id:2,tit:"Pulizia scale",desc:"Impresa Splendor",mese:8,anno:2026,prezzo:25,pag:"18/20"},
+{id:1,tit:"Riparazione cancello",desc:"Motore",mese:8,anno:2026,prezzo:40,pag:"12/20"},
+{id:2,tit:"Pulizia scale",desc:"Impresa",mese:8,anno:2026,prezzo:25,pag:"18/20"},
 {id:3,tit:"Quota ordinaria",desc:"Luce scale",mese:7,anno:2026,prezzo:85,pag:"20/20"},
 {id:4,tit:"Manutenzione giardino",desc:"Potatura",mese:9,anno:2026,prezzo:60,pag:"8/20"},
 {id:5,tit:"Spese luce",desc:"Settembre",mese:7,anno:2026,prezzo:120,pag:"20/20"},
 {id:6,tit:"Ascensore",desc:"Revisione",mese:6,anno:2026,prezzo:90,pag:"15/20"}
 ];
 let guasti=[], spese=[], cat="Altro", imgData="", chartInstance=null, storicoMode='totale';
-function entra(){let n=document.getElementById('n').value.trim()||"Simone";let c=document.getElementById('c').value.trim()||"Rossi";let app=document.getElementById('app').value.trim().toUpperCase()||"4B";let cod=document.getElementById('cod').value.trim().toUpperCase()||"MAGNOLIA";let p=document.getElementById('p').value.trim();let isAdmin=n.toLowerCase()=="amministratore"&&c.toLowerCase()=="condominio"&&p=="amministratore2024";cur={nome:n,cognome:c,appartamento:app,codice:cod,ruolo:isAdmin?"amministratore":"condomino"};localStorage.setItem('cs_cur',JSON.stringify(cur));loadDataForCode(cod);document.getElementById('login').style.display='none';init();}
-function loadDataForCode(cod){let g=JSON.parse(localStorage.getItem('cs_g_'+cod)||'null');let s=JSON.parse(localStorage.getItem('cs_spese_'+cod)||'null');guasti=g||JSON.parse(JSON.stringify(defaultGuasti));spese=s||JSON.parse(JSON.stringify(defaultSpese));if(!g)localStorage.setItem('cs_g_'+cod,JSON.stringify(guasti));if(!s)localStorage.setItem('cs_spese_'+cod,JSON.stringify(spese));}
+function entra(){
+ let n=document.getElementById('n').value.trim()||"Simone";
+ let c=document.getElementById('c').value.trim()||"Rossi";
+ let app=document.getElementById('app').value.trim().toUpperCase()||"4B";
+ let cod=document.getElementById('cod').value.trim().toUpperCase()||"MAGNOLIA";
+ let p=document.getElementById('p').value.trim();
+ let isAdmin=n.toLowerCase()=="amministratore"&&c.toLowerCase()=="condominio"&&p=="amministratore2024";
+ cur={nome:n,cognome:c,appartamento:app,codice:cod,ruolo:isAdmin?"amministratore":"condomino"};
+ localStorage.setItem('cs_cur',JSON.stringify(cur));
+ loadDataForCode(cod);
+ document.getElementById('login').style.display='none';
+ init();
+}
+function loadDataForCode(cod){
+ try{
+  let g=JSON.parse(localStorage.getItem('cs_g_'+cod)||'null');
+  let s=JSON.parse(localStorage.getItem('cs_spese_'+cod)||'null');
+  guasti=g||JSON.parse(JSON.stringify(defaultGuasti));
+  spese=s||JSON.parse(JSON.stringify(defaultSpese));
+  if(!g)localStorage.setItem('cs_g_'+cod,JSON.stringify(guasti));
+  if(!s)localStorage.setItem('cs_spese_'+cod,JSON.stringify(spese));
+ }catch(e){guasti=defaultGuasti;spese=defaultSpese;}
+}
 function saveData(){if(!cur)return;localStorage.setItem('cs_g_'+cur.codice,JSON.stringify(guasti));localStorage.setItem('cs_spese_'+cur.codice,JSON.stringify(spese));}
-function init(){if(!cur)return;document.getElementById('login').style.display='none';if(!guasti.length)loadDataForCode(cur.codice);document.getElementById('ciao').textContent="Ciao, "+cur.nome;document.getElementById('sub').textContent="App. "+cur.appartamento+" • "+cur.codice+" • "+(cur.ruolo=="amministratore"?"Amministratore":"Condomino");document.getElementById('homeEyebrow').textContent="BACHECA • "+cur.codice;document.getElementById('storicoSub').textContent="Condominio "+cur.codice+" • App. "+cur.appartamento;if(cur.ruolo=="amministratore"){document.getElementById('btnAddSpesa').style.display='block';document.getElementById('btnClear').style.display='block';}renderG();renderC();renderStorico();}
+function init(){
+ if(!cur){document.getElementById('login').style.display='flex';return;}
+ document.getElementById('login').style.display='none';
+ if(!guasti.length)loadDataForCode(cur.codice);
+ document.getElementById('ciao').textContent="Ciao, "+cur.nome;
+ document.getElementById('sub').textContent="App. "+cur.appartamento+" • "+cur.codice+" • "+(cur.ruolo=="amministratore"?"Amministratore":"Condomino");
+ document.getElementById('homeEyebrow').textContent="BACHECA • "+cur.codice;
+ document.getElementById('storicoSub').textContent="Condominio "+cur.codice+" • App. "+cur.appartamento;
+ if(cur.ruolo=="amministratore")document.getElementById('btnAddSpesa').style.display='block';
+ renderG();renderC();
+ setTimeout(function(){try{renderStorico();}catch(e){}},300);
+}
 function go(s){document.querySelectorAll('.section').forEach(function(x){x.classList.remove('active')});document.querySelectorAll('.nav button').forEach(function(x){x.classList.remove('active')});document.getElementById(s).classList.add('active');document.getElementById('nav-'+s).classList.add('active');if(s=='storico')renderStorico();window.scrollTo(0,0);}
-function renderG(){document.getElementById('listG').innerHTML=guasti.map(function(g){return '<div class="g-card"><div class="g-head"><div style="display:flex;align-items:center"><span class="avatar">'+g.sig+'</span><div><div style="font-size:13px;font-weight:700">'+g.nome+'</div><div style="font-size:11px;color:#888">'+g.quando+'</div></div></div><div style="display:flex;align-items:center"><span class="badge '+(g.stato=='Aperta'?'badge-open':g.stato=='In corso'?'badge-prog':'badge-done')+'"><i></i>'+g.stato+'</span>'+(cur&&cur.ruolo=='amministratore'?'<button class="del" onclick="delGuasto('+g.id+')">×</button>':'')+'</div></div><img class="g-img" src="'+g.img+'"><div style="padding:13px 14px"><div style="font-weight:700">'+g.tit+'</div><div style="font-size:13px;color:#666">'+g.desc+'</div></div></div>';}).join('')||'<div style="text-align:center;padding:40px;color:#888">Nessun guasto</div>';document.getElementById('note').textContent=guasti.filter(function(x){return x.stato!='Risolto'}).length+" guasti da risolvere";}
-function renderC(){let isAdmin=cur&&cur.ruolo=="amministratore";let tot=spese.reduce(function(a,b){return a+b.prezzo},0);document.getElementById('deve').textContent="Devi €"+(tot/20).toFixed(2).replace('.',',');document.getElementById('listC').innerHTML=spese.map(function(s){return '<div class="card"><div style="display:flex;justify-content:space-between"><div style="flex:1"><b style="font-size:14px">'+s.tit+'</b><div style="font-size:11px;color:#888;margin-top:6px">'+s.desc+'<br>'+s.pag+' pagato</div></div><div class="price">'+s.prezzo+' €<br>'+(isAdmin?'<button class="admin-edit" onclick="editPrezzo('+s.id+')">✎</button><button class="del" onclick="delSpesa('+s.id+')">×</button>':'')+'</div></div>'+(s.pag=='20/20'?'<div class="pagato">✓ Pagato</div>':'<button class="btn-pay" onclick="payOnline()">Paga • '+s.prezzo+'€</button>')+'</div>';}).join('');}
+function renderG(){document.getElementById('listG').innerHTML=guasti.map(function(g){return '<div class="g-card"><div class="g-head"><div style="display:flex;align-items:center"><span class="avatar">'+g.sig+'</span><div><div style="font-size:13px;font-weight:700">'+g.nome+'</div><div style="font-size:11px;color:#888">'+g.quando+'</div></div></div><span class="badge '+(g.stato=='Aperta'?'badge-open':'badge-prog')+'"><i></i>'+g.stato+'</span></div><img class="g-img" src="'+g.img+'"><div style="padding:13px 14px"><div style="font-weight:700">'+g.tit+'</div><div style="font-size:13px;color:#666">'+g.desc+'</div></div></div>';}).join('');document.getElementById('note').textContent=guasti.length+" guasti";}
+ function renderC(){let tot=spese.reduce(function(a,b){return a+b.prezzo},0);document.getElementById('deve').textContent="Devi €"+(tot/20).toFixed(2).replace('.',',');document.getElementById('listC').innerHTML=spese.map(function(s){return '<div class="card"><div style="display:flex;justify-content:space-between"><div><b>'+s.tit+'</b><div style="font-size:11px;color:#888">'+s.pag+' pagato</div></div><div class="price">'+s.prezzo+' €</div></div><button class="btn-pay" onclick="toast(\'Paga Online\')">Paga • '+s.prezzo+'€</button></div>';}).join('');}
 function setStorico(mode){storicoMode=mode;document.getElementById('btnTot').style.background=mode=='totale'?'#111':'transparent';document.getElementById('btnTot').style.color=mode=='totale'?'#fff':'#888';document.getElementById('btnSing').style.background=mode=='singolo'?'#111':'transparent';document.getElementById('btnSing').style.color=mode=='singolo'?'#fff':'#888';renderStorico();}
 function renderStorico(){
+ if(typeof Chart==='undefined')return;
  let mesi=["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"];
  let perMese=new Array(12).fill(0);
- spese.forEach(function(s){ if(s.anno==2026) perMese[s.mese]+=s.prezzo; });
+ spese.forEach(function(s){ perMese[s.mese]+=s.prezzo; });
  let tot=perMese.reduce(function(a,b){return a+b},0);
  let dataChart = storicoMode=='totale'? perMese : perMese.map(function(v){return v/20});
  let totShow = storicoMode=='totale'? tot : tot/20;
  document.getElementById('totAnno').textContent="€ "+Math.round(totShow);
- document.getElementById('mediaMese').textContent= storicoMode=='totale'? "Media €"+(tot/12).toFixed(0)+" / mese • 20 appartamenti" : "Media €"+(tot/20/12).toFixed(0)+" / mese • App. "+(cur?cur.appartamento:"4B");
- document.getElementById('labelTot').textContent= storicoMode=='totale'? "TOTALE SPESO 2026 - CONDOMINIO" : "TOTALE SPESO 2026 - SINGOLO";
- document.getElementById('labelChart').textContent= storicoMode=='totale'? "ANDAMENTO - TOTALE CONDOMINIO" : "ANDAMENTO - SINGOLO APPARTAMENTO";
- let listHtml=perMese.map(function(val,i){ if(val==0)return ''; return '<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0"><span style="font-size:14px;font-weight:600">'+mesi[i]+' 2026</span><div style="text-align:right"><div style="font-size:14px;font-weight:700">€'+val+' totale</div><div style="font-size:11px;color:#888">€'+(val/20).toFixed(0)+' a testa</div></div></div>'; }).join('')||'<div style="color:#888;font-size:13px">Nessuna spesa</div>';
+ document.getElementById('mediaMese').textContent= storicoMode=='totale'? "Media €"+(tot/12).toFixed(0)+" / mese • Totale condominio" : "Media €"+(tot/20/12).toFixed(0)+" / mese • Singolo App. "+(cur?cur.appartamento:"4B");
+ document.getElementById('labelTot').textContent= storicoMode=='totale'? "TOTALE 2026 - CONDOMINIO" : "TOTALE 2026 - SINGOLO APP. "+(cur?cur.appartamento:"4B");
+ document.getElementById('labelChart').textContent= storicoMode=='totale'? "ANDAMENTO - TOTALE" : "ANDAMENTO - SINGOLO";
+ let listHtml=perMese.map(function(val,i){ if(val==0)return ''; return '<div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f0f0f0"><span style="font-weight:600">'+mesi[i]+'</span><span><b>€'+val+'</b> <small style="color:#888">/ €'+(val/20).toFixed(0)+' singolo</small></span></div>'; }).join('')||'Nessuna spesa';
  document.getElementById('listStorico').innerHTML=listHtml;
  let ctx=document.getElementById('chartSpese').getContext('2d');
  if(chartInstance)chartInstance.destroy();
  chartInstance=new Chart(ctx,{type:'line',data:{labels:mesi,[STRIPPED] '€'+c.parsed.y}}}},scales:{y:{grid:{color:'#f0f0f0'},ticks:{display:false}},x:{grid:{display:false}}},responsive:true}});
 }
-function delGuasto(id){guasti=guasti.filter(function(g){return g.id!=id});saveData();renderG();renderStorico();toast("Rimosso");}
-function delSpesa(id){spese=spese.filter(function(s){return s.id!=id});saveData();renderC();renderStorico();}
-function clearAll(){guasti=[];saveData();renderG();toast("Bacheca vuota");}
-function editPrezzo(id){let s=spese.find(function(x){return x.id==id});let n=prompt("Nuovo prezzo:",s.prezzo);if(n===null)return;let v=parseFloat(n.replace(',','.'));if(isNaN(v))return;s.prezzo=v;saveData();renderC();renderStorico();}
-function addSpesa(){let t=prompt("Nome spesa:");if(!t)return;let p=prompt("Prezzo:");let v=parseFloat((p||"0").replace(',','.'));let m=new Date().getMonth();spese.unshift({id:Date.now(),tit:t,desc:"Nuova",mese:m,anno:2026,prezzo:v||0,pag:"0/20"});saveData();renderC();renderStorico();}
 function openS(){document.getElementById('sheet').classList.add('open');}
 function closeS(){document.getElementById('sheet').classList.remove('open');}
 function selC(el){document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('active')});el.classList.add('active');cat=el.textContent;}
 function loadF(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=function(){imgData=r.result;document.getElementById('prev').src=imgData;document.getElementById('prev').style.display='block';document.getElementById('upT').style.display='none';};r.readAsDataURL(f);}
-function pub(){let t=document.getElementById('tit').value||"Guasto";let d=document.getElementById('det').value||"";let img=imgData||"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800";guasti.unshift({id:Date.now(),tit:t,desc:d,cat:cat,stato:"Aperta",img:img,nome:cur.nome+" "+cur.cognome+" - App. "+cur.appartamento,sig:(cur.nome[0]||"S")+(cur.cognome[0]||"R"),quando:"App. "+cur.appartamento+" - ora"});saveData();renderG();closeS();go('guasti');imgData="";document.getElementById('prev').style.display='none';document.getElementById('upT').style.display='block';toast("Segnalato");}
-function payOnline(){toast("Paga Online: collega Stripe");}
-function toast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},2600);}
-if(cur){loadDataForCode(cur.codice);init();}
+function pub(){let t=document.getElementById('tit').value||"Guasto";let d=document.getElementById('det').value||"";let img=imgData||"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800";guasti.unshift({id:Date.now(),tit:t,desc:d,cat:cat,stato:"Aperta",img:img,nome:cur.nome+" "+cur.cognome,sig:(cur.nome[0]||"S")+(cur.cognome[0]||"R"),quando:"ora"});saveData();renderG();closeS();go('guasti');toast("Segnalato");}
+function toast(t){let e=document.getElementById('toast');e.textContent=t;e.classList.add('show');setTimeout(function(){e.classList.remove('show')},2200);}
+function addSpesa(){let t=prompt("Nome spesa:");if(!t)return;let p=prompt("Prezzo:");let v=parseFloat((p||"0").replace(',','.'));spese.unshift({id:Date.now(),tit:t,mese:new Date().getMonth(),anno:2026,prezzo:v||0,pag:"0/20"});saveData();renderC();renderStorico();}
+if(cur){loadDataForCode(cur.codice);init();} else {document.getElementById('login').style.display='flex';}
 </script>
 </body>
 </html>
